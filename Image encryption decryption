@@ -1,0 +1,22 @@
+import cv2
+import numpy as np
+
+# Load the image in grayscale
+img = cv2.imread(r"C:\Users\sawan rathi\Downloads\DIP3E_CH01_Original_Images\DIP3E_Original_Images_CH01\one.tif", cv2.IMREAD_GRAYSCALE)
+
+# Create an image of the same size filled with a constant value
+height, width = img.shape
+constant_value = 10
+imag = np.full((height, width), constant_value, dtype=np.uint8)
+
+# Encrypt the image by adding the constant image
+Eimg = cv2.add(img, imag)
+
+# Decrypt the image by subtracting the constant image
+Dimg = cv2.subtract(Eimg, imag)
+
+# Display the decrypted image
+cv2.imshow("Decrypted Image", Dimg)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
